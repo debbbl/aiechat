@@ -40,7 +40,7 @@ To set up and run this project on your local machine, follow these steps:
 
 1. **Clone this repository**:
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/debbbl/aiechat.git
    ```
 2. **Create and activate a virtual environment**:
    ```bash
