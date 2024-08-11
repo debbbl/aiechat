@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AIECHAT</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2></h2>
+            <a href="#">AIECHAT</a>
+            <a href="/sentiment_analysis">Sentiment Analysis</a>
+        </div>
+        <div class="main-content">
+            <div class="chatbox">
+                <div class="chatbox-header">AIECHAT</div>
+                <div id="messages" class="chatbox-body chat-list"></div>
+                <div id="faqButtons" class="faq-buttons">
+                    <button class="faq-button">What is AIESEC?</button>
+                    <button class="faq-button">How to join AIESEC?</button>
+                    <button class="faq-button">Global Volunteer</button>
+                    <button class="faq-button">AIESEC Programs?</button>
+                </div>
+                <div id="programButtons" class="faq-buttons"></div>
+                <div class="chatbox-footer">
+                    <textarea id="userInput" placeholder="Type a message..."></textarea>
+                    <button id="sendButton" class="send-button" disabled>
+                        <img src="../static/images/send-icon.png" alt="Send"> 
+                    </button>                    
+                </div>
+            </div>
+        </div>
+        <button class="menu-button" id="menuButton">
+            <img src="../static/images/menu-icon.png" alt="Menu"> 
+        </button>
+    </div>
+    <script src="../static/script.js"></script>
+</body>
+</html>

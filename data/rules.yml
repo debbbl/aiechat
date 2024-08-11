@@ -1,0 +1,225 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Respond to FAQ about AIESEC
+  steps:
+  - intent: faq_about_aiesec
+  - action: action_answer_question
+
+- rule: Respond to FAQ about how to apply
+  steps:
+  - intent: faq_how_to_apply
+  - action: action_answer_question
+
+- rule: Activate the welcome message at session start
+  steps:
+    - action: action_session_start
+    - action: action_welcome
+
+- rule: Ask for timeline if missing
+  condition:
+    - slot_was_set:
+        - country
+    - slot_was_set:
+        - start_month: null
+        - end_month: null
+  steps:
+    - action: action_ask_timeline
+
+- rule: Ask for country if missing
+  condition:
+    - slot_was_set:
+        - start_month
+        - end_month
+    - slot_was_set:
+        - country: null
+  steps:
+    - action: action_ask_country
+
+- rule: Respond to complete information
+  condition:
+    - slot_was_set:
+        - country
+    - slot_was_set:
+        - start_month
+        - end_month
+  steps:
+    - action: action_search_programs
+
+- rule: Trigger action for showing program details
+  condition:
+    - slot_was_set:
+        - program
+        - country
+  steps:
+    - intent: inquire_program_details
+    - action: action_show_program_details
+
+- rule: List countries available for volunteering
+  steps:
+  - intent: inquire_countries_available
+  - action: action_list_countries_available
+
+- rule: List volunteer programs available in a specific country
+  steps:
+  - intent: inquire_volunteer_programs
+    entities:
+      - country
+  - action: action_list_volunteer_programs
+
+- rule: Respond to meal inquiry
+  steps:
+    - intent: inquire_meal
+      entities:
+        - program
+    - action: action_ask_meal
+
+- rule: Respond to accommodation inquiry
+  steps:
+    - intent: inquire_accommodation
+      entities:
+        - program
+        - country
+    - action: action_ask_accommodation
+
+- rule: Handle fallback
+  steps:
+    - intent: nlu_fallback
+    - action: action_default_fallback
+
+- rule: Respond to Malaysian Youth Volunteer intake process
+  steps:
+  - intent: inquire_intake_process
+    entities:
+      - myv_program
+  - action: utter_intake_process
+
+- rule: Respond to Speak Up key activities
+  steps:
+  - intent: inquire_speakup_activities
+    entities:
+      - myv_program: "Speak Up"
+  - action: utter_speak_up_activities
+
+- rule: Respond to Clean Our Plate key activities
+  steps:
+    - intent: inquire_cop_activities
+      entities:
+        - myv_program: "Clean Our Plate"
+    - action: utter_clean_our_plate_activities
+
+- rule: Respond to Love Yourself key activities
+  steps:
+    - intent: inquire_ly_activities
+      entities:
+        - myv_program: "Love Yourself"
+    - action: utter_love_yourself_activities
+
+- rule: Respond to program admin fee
+  steps:
+  - intent: inquire_program_fee
+    entities:
+      - myv_program
+  - action: utter_program_fee
+
+- rule: Respond to flight inquiry
+  steps:
+  - intent: ask_flight
+  - action: utter_ask_flight
+
+- rule: Respond to joining Global Volunteer
+  steps:
+  - intent: ask_join_gv
+    entities:
+      - project: "Global Volunteer"
+  - action: utter_join_gv
+
+- rule: Respond to budget inquiry
+  steps:
+  - intent: ask_budget
+  - action: utter_budget
+
+- rule: Respond to Global Volunteer requirements
+  steps:
+  - intent: ask_requirements
+    entities:
+      - project: "Global Volunteer"
+  - action: utter_gv_requirements
+
+- rule: Respond to AIESEC project inquiry
+  steps:
+  - intent: inquire_aiesec_project
+  - action: utter_aiesec_project
+
+- rule: Respond to MYV inquiry
+  steps:
+  - intent: inquire_myv
+    entities:
+      - project: "Malaysia Youth Volunteer"
+  - action: utter_myv
+
+- rule: Respond to Global Volunteer inquiry
+  steps:
+  - intent: GV
+  - action: utter_what_is_gv
+
+- rule: Respond to program admin fee
+  steps:
+  - intent: inquire_program_fee
+    entities:
+      - myv_program
+  - action: utter_program_fee
+
+- rule: Respond to Speak Up brief description
+  steps:
+  - intent: inquire_speakup_program
+    entities:
+      - myv_program: "Speak Up"
+  - action: utter_speak_up
+
+- rule: Respond to Clean Our Plate brief description
+  steps:
+  - intent: inquire_cop_program
+    entities:
+      - myv_program: "Clean Our Plate"
+  - action: utter_clean_our_plate
+
+- rule: Respond to Love Yourself brief description
+  steps:
+  - intent: inquire_ly_program
+    entities:
+      - myv_program: "Love Yourself"
+  - action: utter_love_yourself
+
+- rule: Respond to Speak Up contact details
+  steps:
+  - intent: inquire_speakup_contact
+    entities:
+      - myv_program: "Speak Up"
+  - action: utter_speak_up_contact
+
+- rule: Respond to Clean Our Plate contact details
+  steps:
+  - intent: inquire_cop_contact
+    entities:
+      - myv_program: "Clean Our Plate"
+  - action: utter_clean_our_plate_contact
+
+- rule: Respond to Love Yourself contact details
+  steps:
+  - intent: inquire_ly_contact
+    entities:
+      - myv_program: "Love Yourself"
+  - action: utter_love_yourself_contact
+
