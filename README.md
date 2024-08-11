@@ -44,15 +44,19 @@ To set up and run this project on your local machine, follow these steps:
 2. **Create and activate a virtual environment**:
   ```bash
   python -m venv env
-  env\Scripts\activate  # On Windows
-  # For macOS/Linux, use: source env/bin/activate
-3. Install the required dependencies:
+  env\Scripts\activate
+3. **Install the required dependencies**:
     ```bash
   pip install -r requirements.txt
-4. Run the following commands in 3 separate terminals:
+4. **Run the following commands in 3 separate terminals**:
+```bash
 - Terminal 1: Start the Rasa server:
+```bash
 rasa run --cors "*"
+```bash
 - Terminal 2:Start the Rasa action server:
+```bash
 rasa run actions
+```bash
 - Terminal 3: Start the Flask application:
 python app.py
