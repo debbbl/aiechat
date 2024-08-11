@@ -1,0 +1,259 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - faq_about_aiesec
+  - faq_how_to_apply
+  - faq_apply_volunteering
+  - inform_country
+  - inform_timeline
+  - inform_interests
+  - inform_benefits
+  - inform_skills
+  - inform_accommodation
+  - inform_meal
+  - inform_country_and_timeline
+  - inquire_program_details
+  - inquire_accommodation
+  - inquire_meal
+  - provide_country
+  - inquire_countries_available
+  - inquire_volunteer_programs
+  - inquire_intake_process
+  - inquire_cop_activities
+  - inquire_speakup_activities
+  - inquire_ly_activities
+  - inquire_program_fee
+  - inquire_speakup_program
+  - inquire_cop_program
+  - inquire_ly_program
+  - inquire_speakup_contact
+  - inquire_cop_contact
+  - inquire_ly_contact
+  - inquire_aiesec_project
+  - inquire_myv
+  - GV
+  - ask_flight
+  - ask_join_gv
+  - ask_budget
+  - ask_requirements
+
+entities:
+  - country
+  - start_month
+  - end_month
+  - interests
+  - benefits
+  - skills
+  - accommodation
+  - meal
+  - program
+  - myv_program
+  - project
+
+slots:
+  suggested_program:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: program
+  country:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: country
+  start_month:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: start_month
+  end_month:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: end_month
+  interests:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: interests
+  program:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: program
+  skills:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: skills
+  accommodation:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: accommodation
+  meal:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: meal
+
+
+actions:
+  - action_welcome
+  - action_answer_question
+  - action_faq
+  - action_session_start
+  - action_search_programs
+  - action_ask_country
+  - action_ask_timeline
+  - action_ask_interests
+  - action_ask_accommodation
+  - action_ask_meal
+  - action_show_program_details
+  - action_default_fallback
+  - action_list_countries_available
+  - action_list_volunteer_programs
+
+responses:
+  utter_welcome:
+  - text: "Welcome to our AIESEC chatbot! How can I assist you today?"
+
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_aiesec_project:
+  - text: "Global Volunteer\n
+          Malaysia Youth Volunteer \n
+          -- Clean Our Plate\n
+          -- Speak Up\n
+          -- Love Yourself"
+
+  utter_myv:
+  - text: "Malaysian Youth Volunteer (MYV) is a program to empower Youth to take ownership of their personal development and take action towards solving social issues in the community around them through Sustainable Development Goals aligned virtual volunteering projects.\n
+          It includes programs such as Clean Our Plate, Speak Up and Love Yourslef"
+
+  utter_faq_about_aiesec:
+  - text: "AIESEC is a global platform for young people to explore and develop their leadership potential. It is a non-political, independent, not-for-profit organization run by students and recent graduates of institutions of higher education."
+
+  utter_faq_how_to_apply:
+  - text: "To apply for a volunteering program, visit our website, select a program that interests you, and follow the application instructions. You will need to create an account, fill in your details, and submit your application."
+
+  utter_faq_global_volunteer_requirements:
+  - text: "The requirements for the Global Volunteer program include being between 18-30 years old and having a good command of English. Some projects might have additional specific requirements."
+
+  utter_ask_country:
+    - text: "In which country would you like to volunteer?"
+  utter_ask_timeline:
+    - text: "When are you available to volunteer?"
+  utter_ask_interests:
+    - text: "What are your interests for the volunteer program?"
+  utter_ask_benefits:
+    - text: "Are there any specific benefits you're looking for in a program?"
+  utter_ask_skills:
+    - text: "What skills do you want to develop or utilize?"
+  utter_ask_accommodation:
+    - text: "Do you require accommodation?"
+  utter_ask_flight:
+    - text: "• Yes, you will have to book your own flight tickets, 
+    apply for visa and purchase travel insurance by yourself after getting approved by a project."
+  utter_suggest_programs:
+    - text: "Based on your preferences, here are some suitable programs: {program_list}"
+  utter_faq_documents_required:
+    - text: "You need to submit the following documents: [list of documents]."
+  utter_program_details_not_found:
+    - text: "Program details not found."
+  utter_default:
+    - text: "I am sorry, I don't have an answer for that. 
+    \nPlease refer to this link for more information : https://beacons.ai/aiesecinum/youthspeakforum"
+  utter_budget:
+    - text: "The estimated expenses are varies depending on the countries and projects that you will be going, you may take into consideration the project fees, administration
+      fee, visa, flight tickets, insurance and living expenses in that countries for 6 weeks. Let’s apply to get more information from us."
+  utter_gv_requirements:
+    - text: "1) Commit to a 6 weeks duration for your project (minimum duration) .\n
+             2) Be aged 18 to 30. \n
+             3) Malaysians or non-Malaysians. \n
+             4) Pay the administrative fee of RM800, purchase your insurance and travel ticket. \n
+             5) Be responsive to all AIESEC communications and attend preparation spaces before departure.
+             6) Be ready to make a social impact and develop yourself like never before."
+  utter_join_gv:
+    - text: "Global Volunteer program provide a platform for the youth to develop their leadership through a volunteering project contributing to the Sustainable Development
+            Goals. You will be able to experience a new culture and step out of your comfort zone to live in a challenging environment which you will develop your leadership
+            competencies, personal skills and increase your language competencies."
+  utter_intake_process:
+    - text: "1) Apply in application form provided by AIESEC for the virtual volunteer opportunity.\n
+             2) Attend and pass interview assessment conducted by the organizing committee of the project.\n
+             3) Approved to become official virtual volunteer through submitting virtual volunteer fees and approval documents.\n
+             4) Attend preparation webinar and receive preparation booklet before starting the volunteering experience.\n
+             5) Commit to volunteering activities for 4 weeks and complete the tasks given everyday."
+  utter_what_is_gv:
+    - text: "Global Volunteer is a 6 weeks cross-cultural volunteer experience for
+            youth in Malaysia who seek to develop themselves and the world. You
+            expand your global network and learn to communicate effectively,
+            while contributing to something that matters"
+  utter_speak_up_activities:
+    - text: "The key activities include Sales Marketing Workshop, Figma Workshop, Project Management Workshop, STEAM Competition, Volunteering, Global Village, LEAD Space and Site visit."
+
+  utter_clean_our_plate_activities:
+    - text: "The key activities include Train the Trainer(TtT), Home Composting Workshop, Home Gardening Workshop, Zero Waste Talk, Eco-Enzyme Making, Food Planning, Food Rescuer, Jungle Walk and Biodiversity Conservation Talk, Surplus Food Sorting,
+             Food Distribution, Waste Management Lab Site Visit, Pitching Competition, Workshop Coordination, School Exhibition, LEAD Space and International Youth Engagement. "
+
+  utter_love_yourself_activities:
+    - text: "The key activities include Train the Trainer(TtT), Drama Therapy, Hand Sign Language, Training from counselor, Creative Writing, LEAD Spaces, Emo Mastery Workshop, Revealing You Workshop, Mental Health Awareness Campaign and
+             Heart Harbor Workshop."
+
+  utter_program_fee:
+  - text: "The total volunteer admin fee is RM 200."
+
+  utter_speak_up:
+  - text: "Speak Up is a project designed to empower young people to share their ideas, thoughts, and opinions on a variety of topics. It focuses on issues of social importance, leadership, and global challenges."
+
+  utter_clean_our_plate:
+  - text: "Clean Our Plate is a project that aims to address the issue of food waste and promote sustainable consumption practices. You can make a positive impact on the environment by minimizing waste and adopting eco-friendly practices by joining us !"
+
+  utter_love_yourself:
+  - text: "Love Yourself is a heartfelt project aimed at increasing mental well-being awareness and accessibility of psychological support for the disabled community. Our mission is to ensure that everyone, regardless of ability, has the resources and support they need to prioritize their mental health and thrive. "
+
+  utter_speak_up_contact:
+  - text: "Feel free to reach out to Guo Chun Yu, our Local Committee Vice President of iGV, by calling +60196441404 or emailing chunyu.guo@aiesec.net. You can also get in touch with Rachel Teoh, the Project Director of Speak Up, by calling +60 177149288 or emailing rachelteoh@aiesec.net. They would be happy to help!"
+
+  utter_clean_our_plate_contact:
+  - text: "You can reach out to Guo Chun Yu, our Local Committee Vice President of iGV, by calling +60196441404 or emailing chunyu.guo@aiesec.net. Besides, you can contact Joyce Chong E-Zin, the Project Director of Clean Our Plate, at +60166368255 or by emailing joycexez18@aiesec.net. They are both happy to help!"
+
+  utter_love_yourself_contact:
+  - text: "Feel free to reach out to Guo Chun Yu, our Local Committee Vice President of iGV at +60196441404 or via email at chunyu.guo@aiesec.net. You can also contact Gan Wen Jing, the Project Director of Clean Our Plate, at +6018-2840641 or by emailing wenjing@aiesec.net. They are both happy to assist!"
+
+session_config:
+  session_expiration_time: 3600
+  carry_over_slots_to_new_session: true
+  initial_action: action_session_start
